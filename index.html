@@ -11,14 +11,26 @@
         var $body = $('body');
         $body.html('');
 
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
+        var displayTweets = function() {
+          $body.html('');
+          var index = 0;
+          while(index < streams.home.length){
+            var tweet = streams.home[index];
+            var $tweet = $('<div></div>');
+            $tweet.text('@' + tweet.user + ': ' + tweet.message);
+            $tweet.prependTo($body);
+            index += 1;
+          }
+          $("body").append($button);
+          $(".new-tweets").on('click', displayTweets);
+
         }
+        displayTweets();
+
+        var $button = '<button type="button" class="new-tweets">New Tweets</button>';
+        $("body").append($button);
+
+        $(".new-tweets").on('click', displayTweets);
 
       });
 
