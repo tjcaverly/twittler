@@ -22,13 +22,13 @@
               continue;
             }
             var $tweet = $('<div></div>');
-            $tweet.text('@' + tweet.user + ': ' + tweet.message);
+            $tweet.html('<p>@' + tweet.user + ': ' + tweet.message + '<br>Posted at: ' + tweet.created_at + '</p>');
             $tweet.prependTo($body);
             streams.home[index].displayed = true;
             index += 1;
           }
         }
-        
+
         displayTweets();
 
         var $button = '<button type="button" class="new-tweets">New Tweets</button>';
