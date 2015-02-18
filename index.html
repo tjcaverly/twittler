@@ -11,32 +11,44 @@
         var $body = $('body');
         $body.html('');
 
-        /*Remove all tweets from DOM*/
+        /* Remove all tweets from DOM */
         var removeTweets = function() {
           $(".tweet").remove();
         };
 
-        /*This function should display all new tweets*/
+        /*This function should display all new tweets
+        it will filter by a provided username and
+        remove all tweets from DOM if refresh is true*/
+
         var displayTweets = function(refresh, userName) {
 
           var index = 0;
+          var tweetsToDisplay;
 
           if (refresh) {
             removeTweets();
           }
 
-          while(index < streams.home.length){
-            var tweet = streams.home[index];
-            if ( (refresh || !(tweet.displayed === true)) && (userName === undefined || tweet.user === userName) ) {
+          // filter by userName if provided
+          if (userName !== undefined){
+            tweetsToDisplay = streams.users[userName];
+          } else {
+            tweetsToDisplay = streams.home;
+          }
+
+          while(index < tweetsToDisplay.length){
+            var tweet = tweetsToDisplay[index];
+            if ( (refresh || !(tweet.displayed === true)) ) {
  
               var $tweet = $('<div class="tweet" data-user='+tweet.user + '></div>');
               $tweet.html('<p><a href="#" class=user-link>@' + tweet.user + '</a>: ' + tweet.message + '<br>Posted at: ' + tweet.created_at + '</p>');
               $tweet.prependTo($body);
-              streams.home[index].displayed = true;
+              tweetsToDisplay[index].displayed = true;
             }
             index += 1;
           }
 
+          //add click listener to '.user-link' in all tweets
           $(".tweet").on('click', '.user-link', function (event){
             event.preventDefault();
             event.stopPropagation();
