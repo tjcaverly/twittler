@@ -11,30 +11,40 @@
         var $body = $('body');
         $body.html('');
 
+        /*Remove all tweets from DOM*/
+        var removeTweets = function() {
+          $(".tweet").remove();
+        };
+
         /*This function should display all new tweets*/
-        var displayTweets = function() {
+        var displayTweets = function(refresh, userName) {
 
           var index = 0;
+
+          if (refresh) {
+            removeTweets();
+          }
+
           while(index < streams.home.length){
             var tweet = streams.home[index];
-            if (tweet.displayed === true){
-              index += 1;
-              continue;
+            if (refresh || !(tweet.displayed === true)){
+ 
+              var $tweet = $('<div class="tweet"></div>');
+              $tweet.html('<p>@' + tweet.user + ': ' + tweet.message + '<br>Posted at: ' + tweet.created_at + '</p>');
+              $tweet.prependTo($body);
+              streams.home[index].displayed = true;
             }
-            var $tweet = $('<div></div>');
-            $tweet.html('<p>@' + tweet.user + ': ' + tweet.message + '<br>Posted at: ' + tweet.created_at + '</p>');
-            $tweet.prependTo($body);
-            streams.home[index].displayed = true;
             index += 1;
           }
         }
 
+
         displayTweets();
 
-        var $button = '<button type="button" class="new-tweets">New Tweets</button>';
-        $("body").append($button);
-
+        var $buttonNewTweets = '<button type="button" class="new-tweets">New Tweets</button>';
+        $("body").append($buttonNewTweets);
         $(".new-tweets").on('click', displayTweets);
+
 
       });
 
