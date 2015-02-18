@@ -11,20 +11,24 @@
         var $body = $('body');
         $body.html('');
 
+        /*This function should display all new tweets*/
         var displayTweets = function() {
-          $body.html('');
+
           var index = 0;
           while(index < streams.home.length){
             var tweet = streams.home[index];
+            if (tweet.displayed === true){
+              index += 1;
+              continue;
+            }
             var $tweet = $('<div></div>');
             $tweet.text('@' + tweet.user + ': ' + tweet.message);
             $tweet.prependTo($body);
+            streams.home[index].displayed = true;
             index += 1;
           }
-          $("body").append($button);
-          $(".new-tweets").on('click', displayTweets);
-
         }
+        
         displayTweets();
 
         var $button = '<button type="button" class="new-tweets">New Tweets</button>';
