@@ -38,19 +38,27 @@
             tweetsToDisplay = streams.home;
           }
 
+          // display all the tweets in tweetsToDisplay
           while(index < tweetsToDisplay.length){
+
             var tweet = tweetsToDisplay[index];
+
+            //dislpay the tweet if refreshing all tweets or
+            //if tweet has not been displayed yet 
             if ( (refresh || !(tweet.displayed === true)) ) {
  
-              var $tweet = $('<div class="tweet" data-user='+tweet.user + '></div>');
+              var $tweet = $('<div class="tweet" data-user='+tweet.user + '></div>'); //tweet is in a div with user name data and tweet class
+
+              //html for displaying tweet info
               $tweet.html('<p><a href="#" class=user-link>@' + tweet.user + '</a>: ' + tweet.message + '<br>Posted at: ' + tweet.created_at + '</p>');
               $tweet.prependTo($body);
-              tweetsToDisplay[index].displayed = true;
+              tweetsToDisplay[index].displayed = true; //mark this tweet as previously displayed. 
             }
             index += 1;
           }
 
           //add click listener to '.user-link' in all tweets
+          //which will display tweets by only that user
           $(".tweet").on('click', '.user-link', function (event){
             event.preventDefault();
             event.stopPropagation();
@@ -61,14 +69,16 @@
         }
 
 
-        displayTweets();
+        displayTweets(); //initially display all tweets. 
 
+        //This button will display any new tweets
         var $buttonNewTweets = '<button type="button" class="new-tweets">Update Tweets</button>';
         $("body").append($buttonNewTweets);
         $(".new-tweets").on('click', function(){
           displayTweets(false, currentUser);
         });
 
+        //This button will take users to page with all user's tweets.
         var $buttonHome = '<button type="button" class="home-button">All User\'s Tweets </button>';
         $("body").append($buttonHome);
         $(".home-button").on('click', function(){
