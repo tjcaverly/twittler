@@ -63,12 +63,18 @@
 
         displayTweets();
 
-        var $buttonNewTweets = '<button type="button" class="new-tweets">New Tweets</button>';
+        var $buttonNewTweets = '<button type="button" class="new-tweets">Update Tweets</button>';
         $("body").append($buttonNewTweets);
         $(".new-tweets").on('click', function(){
           displayTweets(false, currentUser);
         });
 
+        var $buttonHome = '<button type="button" class="home-button">All User\'s Tweets </button>';
+        $("body").append($buttonHome);
+        $(".home-button").on('click', function(){
+          currentUser = undefined;
+          displayTweets(true, currentUser);
+        });
 
       });
 
