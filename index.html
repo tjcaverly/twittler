@@ -9,7 +9,9 @@
 
       $(document).ready(function(){
         var $body = $('body');
-        $body.html('');
+        $body.html('<div class="all-tweets"></div>');
+
+        var $tweetsDiv = $('.all-tweets');
 
         /* Remove all tweets from DOM */
         var removeTweets = function() {
@@ -51,7 +53,7 @@
 
               //html for displaying tweet info
               $tweet.html('<p><a href="#" class=user-link>@' + tweet.user + '</a>: ' + tweet.message + '<br>Posted at: ' + tweet.created_at + '</p>');
-              $tweet.prependTo($body);
+              $tweet.prependTo($tweetsDiv);
               tweetsToDisplay[index].displayed = true; //mark this tweet as previously displayed. 
             }
             index += 1;
@@ -71,16 +73,19 @@
 
         displayTweets(); //initially display all tweets. 
 
+        $body.append('<div class=buttons-div></div>');
+        var $buttonsDiv = $('.buttons-div');
+
         //This button will display any new tweets
         var $buttonNewTweets = '<button type="button" class="new-tweets">Update Tweets</button>';
-        $("body").append($buttonNewTweets);
+        $buttonsDiv.append($buttonNewTweets);
         $(".new-tweets").on('click', function(){
           displayTweets(false, currentUser);
         });
 
         //This button will take users to page with all user's tweets.
         var $buttonHome = '<button type="button" class="home-button">All User\'s Tweets </button>';
-        $("body").append($buttonHome);
+        $buttonsDiv.append($buttonHome);
         $(".home-button").on('click', function(){
           currentUser = undefined;
           displayTweets(true, currentUser);
