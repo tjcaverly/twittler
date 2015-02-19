@@ -76,7 +76,9 @@ button:hover{
 
 }
 
-.tweet:red
+.tweet:hover {
+	border-color: #0099DD;
+}
 
 /* Tweet content formatting */
 
