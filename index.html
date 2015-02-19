@@ -20,7 +20,12 @@
           $(".tweet").remove();
         };
 
+        var updateHeadingText = function() {
+          $('.heading-text').text(currentUser ? currentUser + "'s Tweets" : "Everyone's Tweets");
+        }
+
         var currentUser = undefined; //Current user who's tweets display
+        var headingText = "Everyone's Tweets"
 
         /*This function should display all new tweets
         it will filter by a provided username and
@@ -55,6 +60,7 @@
 
               //html for displaying tweet info
               $tweet.html('<div class="username-div"><a href="#" class="user-link">@' + tweet.user + ':</a></div>' + '<div class="tweet-text-div"><p class="tweet-text"> ' + tweet.message + '</p></div>' + '<div class="posted-time-div"><p class="time-text">Posted at: ' + tweet.created_at + '</p></div>');
+
               $tweet.prependTo($tweetsDiv);
               tweetsToDisplay[index].displayed = true; //mark this tweet as previously displayed. 
             }
@@ -68,6 +74,7 @@
             event.stopPropagation();
             currentUser = $(this).closest('.tweet').data('user'); 
             displayTweets(true, currentUser);
+            updateHeadingText()
 
           })
         }
@@ -78,6 +85,8 @@
         $content.prepend('<div class=buttons-div></div>');
         var $buttonsDiv = $('.buttons-div');
 
+        $content.prepend('<div class="title-div"><h1 class="heading-text">' + headingText + '</h1></div>');
+
         //This button will display any new tweets
         var $buttonNewTweets = '<button type="button" class="new-tweets button">Update Tweets</button>';
         $buttonsDiv.append($buttonNewTweets);
@@ -86,11 +95,12 @@
         });
 
         //This button will take users to page with all user's tweets.
-        var $buttonHome = '<button type="button" class="home-button button">All User\'s Tweets </button>';
+        var $buttonHome = '<button type="button" class="home-button button">Everyone\'s Tweets </button>';
         $buttonsDiv.append($buttonHome);
         $(".home-button").on('click', function(){
           currentUser = undefined;
           displayTweets(true, currentUser);
+          updateHeadingText()
         });
 
       });

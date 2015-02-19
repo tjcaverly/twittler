@@ -1,5 +1,8 @@
-p, a {
+p, a, h1 {
 	font-family: Helvetica, sans-serif;
+}
+
+p, a {
 	text-align: left;
 	margin: 3px;
 }
@@ -25,7 +28,7 @@ button {
 	background-color: #DDDDCC;
 	margin: 0 auto;
 	padding: 20px 0;
-	border: 1px solid darkblue;
+	border: 2px solid darkblue;
 	border-radius: 15px;
 }
 
@@ -56,4 +59,15 @@ button {
 .user-link {
 	font-size: 16px;
 	font-weight: bold;
+}
+
+.title-div {
+	width: 450px;
+	margin: 0 auto;
+}
+
+.heading-text{
+	text-align: center;
+	margin-top: 5px;
+	color: #222222;
 }
