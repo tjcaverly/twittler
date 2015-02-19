@@ -3,6 +3,7 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <script src="jquery.timeago.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="thecssfile.css">
   </head>
   <body>
@@ -57,9 +58,10 @@
             if ( (refresh || !(tweet.displayed === true)) ) {
  
               var $tweet = $('<div class="tweet" data-user='+tweet.user + '></div>'); //tweet is in a div with user name data and tweet class
+              var timeTweeted = jQuery.timeago(tweet.created_at);
 
               //html for displaying tweet info
-              $tweet.html('<div class="username-div"><a href="#" class="user-link">@' + tweet.user + ':</a></div>' + '<div class="tweet-text-div"><p class="tweet-text"> ' + tweet.message + '</p></div>' + '<div class="posted-time-div"><p class="time-text">Posted at: ' + tweet.created_at + '</p></div>');
+              $tweet.html('<div class="username-div"><a href="#" class="user-link">@' + tweet.user + ':</a></div>' + '<div class="tweet-text-div"><p class="tweet-text"> ' + tweet.message + '</p></div>' + '<div class="posted-time-div"><p class="time-text">Posted ' + timeTweeted + '</p></div>');
 
               $tweet.prependTo($tweetsDiv);
               tweetsToDisplay[index].displayed = true; //mark this tweet as previously displayed. 
