@@ -82,8 +82,8 @@
 
         displayTweets(); //initially display all tweets. 
 
-        $content.prepend('<div class=buttons-div></div>');
-        var $buttonsDiv = $('.buttons-div');
+        $content.prepend('<div class="buttons-div"><div class="inside-buttons-div"></div></div>');
+        var $buttonsDiv = $('.inside-buttons-div');
 
         $content.prepend('<div class="title-div"><h1 class="heading-text">' + headingText + '</h1></div>');
 

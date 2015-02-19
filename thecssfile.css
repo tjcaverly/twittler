@@ -17,9 +17,8 @@ p {
 
 }
 
-button {
-	float: left;
-
+.inside-buttons-div {
+	text-align: center;
 }
 
 
@@ -35,7 +34,6 @@ button {
 .all-tweets {
 	width: 450px;
 	margin: 0 auto;
-	clear: both;
 
 }
 
