@@ -11,17 +11,7 @@ p {
 	color: black;
 }
 
-button {
-	background-color: #AAAAAA;
-	font-size: 17px;
-	border: none;
-	outline: none
-}
-
-button:hover{
-	background-color: black;
-	color: #AAAAAA;
-}
+/* Buttons */
 
 .buttons-div {
 	width: 450px;
@@ -35,6 +25,20 @@ button:hover{
 }
 
 
+button {
+	background-color: #AAAAAA;
+	font-size: 17px;
+	border: none;
+	outline: none
+}
+
+button:hover{
+	background-color: black;
+	color: #AAAAAA;
+}
+
+/* Content box */
+
 .content {
 	width: 500px;
 	background-color: #DDDDCC;
@@ -44,11 +48,14 @@ button:hover{
 	border-radius: 15px;
 }
 
+/* Div containing all tweets */
 .all-tweets {
 	width: 450px;
 	margin: 0 auto;
 
 }
+
+/* Individual tweet box */
 
 .tweet {
 	border: 2px solid darkblue;
@@ -57,6 +64,8 @@ button:hover{
 	padding: 5px 10px;
 
 }
+
+/* Tweet content formatting */
 
 .tweet-text {
 	font-size: 17px;
@@ -72,6 +81,8 @@ button:hover{
 	font-weight: bold;
 }
 
+
+/* Heading */
 .title-div {
 	width: 450px;
 	margin: 0 auto;
