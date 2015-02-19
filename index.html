@@ -16,6 +16,8 @@
           $(".tweet").remove();
         };
 
+        var currentUser = undefined; //Current user who's tweets display
+
         /*This function should display all new tweets
         it will filter by a provided username and
         remove all tweets from DOM if refresh is true*/
@@ -52,7 +54,9 @@
           $(".tweet").on('click', '.user-link', function (event){
             event.preventDefault();
             event.stopPropagation();
-            displayTweets(true, $(this).closest('.tweet').data('user'));
+            currentUser = $(this).closest('.tweet').data('user'); 
+            displayTweets(true, currentUser);
+
           })
         }
 
@@ -61,7 +65,9 @@
 
         var $buttonNewTweets = '<button type="button" class="new-tweets">New Tweets</button>';
         $("body").append($buttonNewTweets);
-        $(".new-tweets").on('click', displayTweets);
+        $(".new-tweets").on('click', function(){
+          displayTweets(false, currentUser);
+        });
 
 
       });
