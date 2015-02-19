@@ -3,6 +3,7 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <link rel="stylesheet" type="text/css" href="thecssfile.css">
   </head>
   <body>
     <script>
@@ -52,7 +53,7 @@
               var $tweet = $('<div class="tweet" data-user='+tweet.user + '></div>'); //tweet is in a div with user name data and tweet class
 
               //html for displaying tweet info
-              $tweet.html('<p><a href="#" class=user-link>@' + tweet.user + '</a>: ' + tweet.message + '<br>Posted at: ' + tweet.created_at + '</p>');
+              $tweet.html('<p class="tweet-text"><a href="#" class=user-link>@' + tweet.user + '</a>: ' + tweet.message + '<br>Posted at: ' + tweet.created_at + '</p>');
               $tweet.prependTo($tweetsDiv);
               tweetsToDisplay[index].displayed = true; //mark this tweet as previously displayed. 
             }
