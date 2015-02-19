@@ -1,4 +1,4 @@
-p, a, h1 {
+p, a, h1, button {
 	font-family: Helvetica, sans-serif;
 }
 
@@ -11,9 +11,22 @@ p {
 	color: black;
 }
 
+button {
+	background-color: #AAAAAA;
+	font-size: 17px;
+	border: none;
+	outline: none
+}
+
+button:hover{
+	background-color: black;
+	color: #AAAAAA;
+}
+
 .buttons-div {
 	width: 450px;
 	margin: 0 auto;
+	padding: 0 0 10px 0;
 
 }
 
@@ -26,7 +39,7 @@ p {
 	width: 500px;
 	background-color: #DDDDCC;
 	margin: 0 auto;
-	padding: 20px 0;
+	padding: 10px 0;
 	border: 2px solid darkblue;
 	border-radius: 15px;
 }
@@ -66,6 +79,9 @@ p {
 
 .heading-text{
 	text-align: center;
-	margin-top: 5px;
+	margin-top: 0;
+	margin-bottom: 5px;
 	color: #222222;
 }
+
+
