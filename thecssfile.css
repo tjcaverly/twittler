@@ -11,6 +11,11 @@ p {
 	color: black;
 }
 
+a {
+	text-decoration: none;
+	color: darkblue;
+}
+
 /* Buttons */
 
 .buttons-div {
@@ -26,22 +31,24 @@ p {
 
 
 button {
-	background-color: #AAAAAA;
+	background-color: white;
+	color: darkblue;
 	font-size: 17px;
-	border: none;
+	border: 2px solid darkblue;
+	border-radius: 15px;
 	outline: none
 }
 
 button:hover{
-	background-color: black;
-	color: #AAAAAA;
+	background-color: #DDDDDD;
+	color: darkblue;
 }
 
 /* Content box */
 
 .content {
 	width: 500px;
-	background-color: #DDDDCC;
+	background-color: #DDDDDD;
 	margin: 0 auto;
 	padding: 10px 0;
 	border: 2px solid darkblue;
@@ -64,6 +71,8 @@ button:hover{
 	padding: 5px 10px;
 
 }
+
+.tweet:red
 
 /* Tweet content formatting */
 
