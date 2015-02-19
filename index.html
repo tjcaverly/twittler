@@ -12,25 +12,27 @@
       $(document).ready(function(){
         var $body = $('body');
         $body.html('<div class="content"><div class="all-tweets"></div></div>');
+        
         var $content = $('.content');
-
         var $tweetsDiv = $('.all-tweets');
 
-        /* Remove all tweets from DOM */
+        var currentUser = undefined;           // Current whose tweets are displayed
+        var headingText = "Everyone's Tweets"  // Current text in the heading
+
+        // Function to remove all tweets from DOM
         var removeTweets = function() {
           $(".tweet").remove();
         };
 
+        // Function to update the heading text
         var updateHeadingText = function() {
           $('.heading-text').text(currentUser ? currentUser + "'s Tweets" : "Everyone's Tweets");
         }
 
-        var currentUser = undefined; //Current user who's tweets display
-        var headingText = "Everyone's Tweets"
-
-        /*This function should display all new tweets
+        /* This function should display all new tweets
         it will filter by a provided username and
-        remove all tweets from DOM if refresh is true*/
+        remove all tweets from DOM if refresh is true 
+        */
 
         var displayTweets = function(refresh, userName) {
 
@@ -58,45 +60,53 @@
             if ( (refresh || !(tweet.displayed === true)) ) {
  
               var $tweet = $('<div class="tweet" data-user='+tweet.user + '></div>'); //tweet is in a div with user name data and tweet class
-              var timeTweeted = jQuery.timeago(tweet.created_at);
+              var timeTweeted = jQuery.timeago(tweet.created_at);                     //when tweet was created
 
-              //html for displaying tweet info
-              $tweet.html('<div class="username-div"><a href="#" class="user-link">@' + tweet.user + ':</a></div>' + '<div class="tweet-text-div"><p class="tweet-text"> ' + tweet.message + '</p></div>' + '<div class="posted-time-div"><p class="time-text">Posted ' + timeTweeted + '</p></div>');
+              // username div
+              $tweet.append('<div class="username-div"><a href="#" class="user-link">@' + tweet.user + ':</a></div>');
+              // tweet text div
+              $tweet.append('<div class="tweet-text-div"><p class="tweet-text"> ' + tweet.message + '</p></div>');
+              // time posted div
+              $tweet.append('<div class="posted-time-div"><p class="time-text">Posted ' + timeTweeted + '</p></div>');
+              
+              $tweet.prependTo($tweetsDiv);            // Add tweet at beginning of tweets div
 
-              $tweet.prependTo($tweetsDiv);
               tweetsToDisplay[index].displayed = true; //mark this tweet as previously displayed. 
             }
             index += 1;
           }
 
-          //add click listener to '.user-link' in all tweets
-          //which will display tweets by only that user
+          // Add click listener to '.user-link' in all tweets
+          // To display tweets by only that user on click
           $(".tweet").on('click', '.user-link', function (event){
             event.preventDefault();
             event.stopPropagation();
+
             currentUser = $(this).closest('.tweet').data('user'); 
-            displayTweets(true, currentUser);
             updateHeadingText()
+            displayTweets(true, currentUser);
+
 
           })
         }
 
-
         displayTweets(); //initially display all tweets. 
 
+        // add an inner and outer div for the 2 buttons and save the inner one to a var
         $content.prepend('<div class="buttons-div"><div class="inside-buttons-div"></div></div>');
         var $buttonsDiv = $('.inside-buttons-div');
 
+        // add the title heading div with text
         $content.prepend('<div class="title-div"><h1 class="heading-text">' + headingText + '</h1></div>');
 
-        //This button will display any new tweets
+        // Create and add button to display any new tweets
         var $buttonNewTweets = '<button type="button" class="new-tweets button">Update Tweets</button>';
         $buttonsDiv.append($buttonNewTweets);
         $(".new-tweets").on('click', function(){
           displayTweets(false, currentUser);
         });
 
-        //This button will take users to page with all user's tweets.
+        // Create and add button to show everyone's tweets
         var $buttonHome = '<button type="button" class="home-button button">Everyone\'s Tweets </button>';
         $buttonsDiv.append($buttonHome);
         $(".home-button").on('click', function(){
